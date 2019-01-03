@@ -49,9 +49,17 @@ class MainActivity : AppCompatActivity() {
                 progressBar.progress += 10
                 Thread.sleep(1000)
             }
+
             //Try to login
+            authenticateLDAP("test", 12345)
+
 
 
         }
     }
+}
+
+fun authenticateLDAP(host : String, port : Int) {
+    println("Logging in to server $host at port $port")
+
 }
