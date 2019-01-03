@@ -1,10 +1,11 @@
 package ai_projekt.boams
 
-import android.app.ProgressDialog
+import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ProgressBar
+import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,11 +13,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        progressBar.visibility = ProgressBar.GONE
-
         btn_login.setOnClickListener {
             retrieveLoginVariables()
         }
+
+        progressBar_test.visibility = View.INVISIBLE
 
     }
 
@@ -24,14 +25,14 @@ class MainActivity : AppCompatActivity() {
         var emptyFields = false
 
         if(txt_username.text.isBlank()){
-            txt_warningUsername.text = "Dieses Feld ist ein Pflichtfeld"
+            showWrongUsername()
             emptyFields = true
         }
         else
             txt_warningUsername.text = ""
 
         if(txt_password.text.isBlank()){
-            txt_warningPassword.text = "Dieses Feld ist ein Pflichtfeld"
+            showWrongPassword()
             emptyFields = true
         }
         else
@@ -41,25 +42,59 @@ class MainActivity : AppCompatActivity() {
             val username = txt_username.text
             val pwd = txt_password.text
 
-            //Animate progressbar while loading
-            progressBar.max = 100
-            progressBar.progress = 0
-            progressBar.visibility = ProgressBar.VISIBLE
-            while (progressBar.progress < progressBar.max){
-                progressBar.progress += 10
-                Thread.sleep(1000)
-            }
+            //Show progress bar while logging in
+            progressBar_test.visibility = View.VISIBLE
+            txt_loadingNotification.text = "Wird angemeldet..."
 
             //Try to login
-            authenticateLDAP("test", 12345)
+            val wasAuthenticated = authenticateLDAP("test", 12345)
 
 
+            //Remove bar once an authorized connection was created
+            if(!wasAuthenticated)
+                showWrongCredentials()
+
+            else
+                txt_loadingNotification.text = ""
+
+            progressBar_test.visibility = View.INVISIBLE
 
         }
     }
+
+
+    fun showWrongUsername(){
+        txt_warningUsername.text = "Dieses Feld ist ein Pflichtfeld"
+    }
+
+    fun showWrongPassword(){
+        txt_warningPassword.text = "Dieses Feld ist ein Pflichtfeld"
+    }
+
+    fun showWrongCredentials(){
+        txt_loadingNotification.setTextColor(Color.RED)
+        txt_loadingNotification.text = "Falsche Zugangsdaten"
+    }
+
+
 }
 
-fun authenticateLDAP(host : String, port : Int) {
-    println("Logging in to server $host at port $port")
+fun authenticateLDAP(host : String, port : Int): Boolean {
+    println("Logging in to server $host at port $port ...")
+    var success : Boolean
 
+    try {
+        //LDAP stuff
+
+
+        success = true;
+    }
+    catch (e : Exception){
+        e.printStackTrace()
+        println("ERROR >>> Could not connect to server.")
+        success = false;
+    }
+
+    return success
 }
+
