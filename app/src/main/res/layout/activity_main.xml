@@ -45,7 +45,7 @@
             android:id="@+id/txt_warningUsername" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="20dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="20dp"
-            android:textColor="@android:color/holo_red_dark"
+            android:textColor="@color/colorTextWrong"
             app:layout_constraintTop_toBottomOf="@+id/txt_username" app:layout_constraintHorizontal_bias="0.0"
             android:textSize="12sp" android:fontFamily="@font/oxygen_light"/>
     <EditText
@@ -67,7 +67,7 @@
             android:id="@+id/txt_warningPassword" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="20dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="20dp"
-            app:layout_constraintTop_toBottomOf="@+id/txt_password" android:textColor="@android:color/holo_red_dark"
+            app:layout_constraintTop_toBottomOf="@+id/txt_password" android:textColor="@color/colorTextWrong"
             android:textSize="12sp" android:fontFamily="@font/oxygen_light"/>
 
     <ProgressBar
@@ -90,6 +90,6 @@
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             app:layout_constraintTop_toBottomOf="@+id/progressBar_test"
-            android:fontFamily="@font/oxygen_light" android:textAlignment="center"/>
+            android:fontFamily="@font/oxygen_light" android:textAlignment="center" android:textSize="18sp"/>
 
 </android.support.constraint.ConstraintLayout>

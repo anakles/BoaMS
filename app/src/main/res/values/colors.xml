@@ -6,4 +6,6 @@
     <color name="defaultColorPrimary">#c523ce</color>
     <color name="defaultColorPrimaryDark">#8e24cf</color>
     <color name="defaultColorAccent">#ffffff</color>
+    <color name="colorTextWrong">#c73f3f</color>
+    <color name="colorTextRight">#2f9f1e</color>
 </resources>
