@@ -8,15 +8,16 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.view.Window
 import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.app_bar_menu.*
+import kotlinx.android.synthetic.main.nav_header_menu.*
 
 class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    var USERNAME = ""
+    var DISPLAYNAME = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        //Remove title bar
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
@@ -34,6 +35,12 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+
+        USERNAME = intent.getStringExtra("USERNAME")
+        DISPLAYNAME = intent.getStringExtra("DISPLAYNAME")
+
+        println("The submitted username is: $USERNAME ($DISPLAYNAME)")
     }
 
     override fun onBackPressed() {
@@ -46,6 +53,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
+        initInterface()
         menuInflater.inflate(R.menu.menu, menu)
         return true
     }
@@ -86,4 +94,13 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    private fun initInterface(){
+        txt_username.text = DISPLAYNAME
+        txt_subUsername.text = USERNAME
+        //Later setting individual user img
+        //img_profilePicture.setImageResource()
+    }
+
+
 }

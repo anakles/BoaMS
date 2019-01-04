@@ -14,10 +14,15 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    var ldapConnection : LDAPConnection? = null
+    var ldapConnection : LDAPConnection = LDAPConnection()
+    val URL = "qj6wy3ivstgbxxcx.myfritz.net"
+    val SSLPORT = 636
+    var USER : String? = null
+    var DISPLAYNAME = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +78,10 @@ class MainActivity : AppCompatActivity() {
                         txt_loadingNotification.text = "Einen Augenblick Geduld. Sie werden weitergeleitet"
                     }
                     delay(1000)
-                    runOnUiThread { startActivity(Intent(this@MainActivity, MenuActivity::class.java))}
+                    var intent = Intent(this@MainActivity, MenuActivity::class.java)
+                    intent.putExtra("USERNAME", USER)
+                    intent.putExtra("DISPLAYNAME", DISPLAYNAME)
+                    runOnUiThread { startActivity(intent)}
                 }
 
                 runOnUiThread { progressBar_test.visibility = View.INVISIBLE }
@@ -101,10 +109,8 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun authenticateLDAP(user : String, pwd : String): Boolean {
-
-        val URL = "qj6wy3ivstgbxxcx.myfritz.net"
-        val SSLPORT = 636
-        val BINDDN = "CN=$user,OU=BENUTZER,DC=AIPROJEKT,DC=LOCAL"
+        USER = user
+        val BINDDN = "CN=$USER,OU=BENUTZER,DC=AIPROJEKT,DC=LOCAL"
         val PW = pwd
 
         try {
@@ -130,6 +136,13 @@ class MainActivity : AppCompatActivity() {
             //Globally safe connection:
             ldapConnection = connection
 
+
+            //Do queries
+            val entry = ldapConnection.getEntry(BINDDN)
+            //println("Entry: ${entry}")
+            //println("Given name: ${entry.getAttributeValue("DisplayName")}")
+            DISPLAYNAME = entry.getAttributeValue("DisplayName")
+
             //ToDo: Remove later:
             println("Closing connection...")
             connection.close()
@@ -146,6 +159,7 @@ class MainActivity : AppCompatActivity() {
             return false
         }
     }
+
 }
 
 
