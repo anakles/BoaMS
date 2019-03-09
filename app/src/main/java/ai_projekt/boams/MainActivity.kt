@@ -1,7 +1,6 @@
 package ai_projekt.boams
 
 import android.content.Intent
-import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -14,11 +13,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    var ldapConnection : LDAPConnection = LDAPConnection()
+    var ldapConnection = LDAPConnection()
     val URL = "qj6wy3ivstgbxxcx.myfritz.net"
     val SSLPORT = 636
     var USER : String? = null
@@ -62,12 +60,21 @@ class MainActivity : AppCompatActivity() {
             var authenticated = false
             GlobalScope.launch {
                 //Try to login
-                val threadLdap = GlobalScope.launch {
-                    authenticated = authenticateLDAP(username.toString(), pwd.toString())}
+                //ToDo: Remove the admin credentials before productive use!!!
+                if(txt_username.text.toString() == "admin" &&
+                   txt_password.text.toString() == "admin"){
+                    authenticated = true
+                    USER = txt_username.text.toString()
+                    DISPLAYNAME = txt_username.text.toString()
+                }
+                else {
+                    val threadLdap = GlobalScope.launch {
+                        authenticated = authenticateLDAP(username.toString(), pwd.toString())}
 
 
-                delay(1000)
-                threadLdap.join()
+                    delay(1000)
+                    threadLdap.join()
+                }
 
                 //Remove bar once an authorized connection was created
                 if(!authenticated)
@@ -123,12 +130,11 @@ class MainActivity : AppCompatActivity() {
             val connection = LDAPConnection(sslSocketFactory)
             connection.connect(URL, SSLPORT)
 
-            if (connection.isConnected)
-                println("Secure SSL connection to $URL at port $SSLPORT established")
-            else {
+            if (!connection.isConnected){
                 println("No connection established")
                 return false
             }
+            println("Secure SSL connection to $URL at port $SSLPORT established")
 
             //Binding = Creating "user session"
             connection.bind(BINDDN, PW)
@@ -137,22 +143,22 @@ class MainActivity : AppCompatActivity() {
             ldapConnection = connection
 
 
-            //Do queries
+            //Query the user entry from the directory
             val entry = ldapConnection.getEntry(BINDDN)
-            //println("Entry: ${entry}")
-            //println("Given name: ${entry.getAttributeValue("DisplayName")}")
+            //Get the display name from the queried entry
             DISPLAYNAME = entry.getAttributeValue("DisplayName")
 
             //ToDo: Remove later:
             println("Closing connection...")
             connection.close()
 
-            if (!connection.isConnected)
-                println("Connection to $URL was closed")
-            else
+            if (connection.isConnected)
                 println("Connection could not be closed")
+            else
+                println("Connection to $URL was closed")
 
             return true
+
         } catch (e: Exception) {
             e.printStackTrace()
             println("ERROR >>> Could not connect to server.")
