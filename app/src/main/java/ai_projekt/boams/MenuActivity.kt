@@ -1,5 +1,9 @@
 package ai_projekt.boams
 
+import ai_projekt.boams.ai_project.boams.entities.*
+import ai_projekt.boams.ai_project.boams.utils.*
+
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -41,6 +45,13 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         DISPLAYNAME = intent.getStringExtra("DISPLAYNAME")
 
         println("The submitted username is: $USERNAME ($DISPLAYNAME)")
+
+        println("Creating current user instance...")
+        val currentUser = getUserByLoginName(USERNAME)
+        if(currentUser == null)
+            println("ERROR @ Requesting this user")
+        else
+            println("Current user instance logged in as ${currentUser.printUser()}")
     }
 
     override fun onBackPressed() {
