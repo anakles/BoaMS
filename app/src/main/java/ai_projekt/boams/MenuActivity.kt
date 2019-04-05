@@ -48,10 +48,17 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         println("Creating current user instance...")
         val currentUser = getUserByLoginName(USERNAME)
-        if(currentUser == null)
+        if(currentUser == null) {
             println("ERROR @ Requesting this user")
+            return
+        }
         else
             println("Current user instance logged in as ${currentUser.printUser()}")
+
+
+
+        //ToDo: Get chatrooms of this user
+        var chatrooms = getChatroomsForUser(currentUser)
     }
 
     override fun onBackPressed() {

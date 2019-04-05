@@ -1,10 +1,15 @@
 package ai_projekt.boams.ai_project.boams.utils
 
+import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
+import org.w3c.dom.Node
 import java.io.BufferedReader
 import java.io.InputStreamReader
+import java.lang.IndexOutOfBoundsException
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.*
 
 class ApiController {
     val API_URL = "http://qj6wy3ivstgbxxcx.myfritz.net"
@@ -31,17 +36,9 @@ class ApiController {
                         response.append(inputLine)
                         inputLine = it.readLine()
                     }
-                    //ToDo: Parse JSON:
-                    val responseString = response.toString()
-                    //println("Raw response: $responseString")
+                    //Parse JSON string to Object:
+                    jsonResponse = parseJson(response.toString())
 
-                    jsonResponse = JSONObject(
-                            responseString.substring(
-                            responseString.indexOf("{"),
-                            responseString.lastIndexOf("}") + 1
-                        )
-                    )
-                    println("Parsed Json: ${jsonResponse}")
                 }
             }
         }
@@ -76,12 +73,9 @@ class ApiController {
                         response.append(inputLine)
                         inputLine = it.readLine()
                     }
-                    //ToDo: Parse JSON:
-                    val responseString = response.toString()
-                    //println("Raw response: $responseString")
+                    //Parse JSON string to Object:
+                    jsonResponse = parseJson(response.toString())
 
-                    jsonResponse = JSONObject(responseString.substring(responseString.indexOf("{"), responseString.lastIndexOf("}")+1))
-                    println("Parsed Json: ${jsonResponse}")
                 }
             }
         }
@@ -115,12 +109,9 @@ class ApiController {
                         response.append(inputLine)
                         inputLine = it.readLine()
                     }
-                    //ToDo: Parse JSON:
-                    val responseString = response.toString()
-                    //println("Raw response: $responseString")
+                    //Parse JSON string to Object:
+                    jsonResponse = parseJson(response.toString())
 
-                    jsonResponse = JSONObject(responseString.substring(responseString.indexOf("{"), responseString.lastIndexOf("}")+1))
-                    println("Parsed Json: ${jsonResponse}")
                 }
             }
         }
@@ -153,12 +144,9 @@ class ApiController {
                         response.append(inputLine)
                         inputLine = it.readLine()
                     }
-                    //ToDo: Parse JSON:
-                    val responseString = response.toString()
-                    //println("Raw response: $responseString")
+                    //Parse JSON string to Object:
+                    jsonResponse = parseJson(response.toString())
 
-                    jsonResponse = JSONObject(responseString.substring(responseString.indexOf("{"), responseString.lastIndexOf("}")+1))
-                    println("Parsed Json: ${jsonResponse}")
                 }
             }
         }
@@ -170,4 +158,36 @@ class ApiController {
         return jsonResponse
     }
 
+    private fun parseJson(rawJson : String) : JSONObject? {
+        //Catch exception for "empty" JSON strings (IndexOutOfBounds):
+
+        try {
+            var jsonObject = JSONObject(
+                //rawJson.substring(
+                //    rawJson.indexOf("{"),
+                //   rawJson.lastIndexOf("}") + 1
+                //)
+                rawJson
+            )
+            println("Parsed Json: ${jsonObject}")
+
+            return jsonObject
+
+        } catch (e: IndexOutOfBoundsException) {
+            //e.printStackTrace()
+            println("ERROR @ API-CONTROLLER: The received JSON string is to short to be parsed into an object, probably empty!")
+        } catch (e_json : JSONException){
+            //e_json.printStackTrace()
+            println("ERROR @ API-CONTROLLER: The received JSON string cannot be parsed into JSONObject, trying JSONArray instead:")
+
+            var jsonArray = JSONArray(
+                rawJson
+            )
+            println("Parsed Json (Array) is: $jsonArray")
+
+            return JSONObject( "{ \"data\" : " +jsonArray.toString()+ "}")
+        }
+
+        return null
+    }
 }
