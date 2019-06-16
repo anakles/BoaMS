@@ -1126,6 +1126,7 @@ id fill_vertical
 id filled
 id fixed
 id forever
+id ftp_listview
 id ghost_view
 id gone
 id group_divider
@@ -1156,6 +1157,7 @@ id mini
 id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
+id name_textview
 id nav_camera
 id nav_gallery
 id nav_manage
@@ -1316,9 +1318,11 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_ftp
 layout activity_main
 layout activity_menu
 layout app_bar_menu
+layout content_ftp
 layout content_menu
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -1352,6 +1356,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout row_main
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material

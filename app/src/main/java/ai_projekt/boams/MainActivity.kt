@@ -12,12 +12,13 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.apache.commons.net.ftp.FTPSClient
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
     var ldapConnection = LDAPConnection()
-    val URL = "qj6wy3ivstgbxxcx.myfritz.net"
+    val URL = "9ntfn2zneyc83qlo.myfritz.net"
     val SSLPORT = 636
     var USER : String? = null
     var DISPLAYNAME = ""
@@ -94,6 +95,7 @@ class MainActivity : AppCompatActivity() {
                 runOnUiThread { progressBar_test.visibility = View.INVISIBLE }
 
                 println("Saved session is: ${ldapConnection?.isConnected}")
+
             }
         }
     }

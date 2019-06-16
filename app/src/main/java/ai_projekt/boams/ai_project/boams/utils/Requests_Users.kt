@@ -1,7 +1,13 @@
 package ai_projekt.boams.ai_project.boams.utils
 
+import ai_projekt.boams.MenuActivity
 import ai_projekt.boams.ai_project.boams.entities.Chatroom
 import ai_projekt.boams.ai_project.boams.entities.User
+import android.content.Context
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.BufferedWriter
+import java.io.OutputStreamWriter
 
 /**Command: /users
  * Returns all users */
@@ -27,23 +33,22 @@ fun getUserByLoginName (loginname: String) : User? {
         json.getString("display_name")
     )
 
+    //ToDo: Save user.json locally
+
     return user
 }
 
-fun getChatroomsForUser(user: User) : ArrayList<Chatroom>{
+fun getChatroomsForUser(user: User) : JSONArray? {
     val chatrooms = ArrayList<Chatroom>()
     val controller = ApiController();
     val json = controller.sendGetCommand("/users/${user.userId}/chatrooms")
 
     if(json == null)
-        return chatrooms
+        return null
 
-    //Test
-    println("CONTROL: The user (${user.printUser()}) is in the following chatrooms: $json")
-
-    //ToDo: parse JSON into Array of chatroom objects
+    val chatroom_array = json.getJSONArray("data")
+    println("CONTROL: The user (${user.printUser()}) is in the following chatrooms: $chatroom_array")
 
 
-
-    return chatrooms
+    return chatroom_array
 }

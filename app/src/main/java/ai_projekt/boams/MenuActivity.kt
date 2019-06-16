@@ -1,9 +1,11 @@
 package ai_projekt.boams
 
+import ai_projekt.boams.ai_project.boams.FtpActivity
 import ai_projekt.boams.ai_project.boams.entities.*
 import ai_projekt.boams.ai_project.boams.utils.*
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -15,6 +17,8 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_menu.*
 import kotlinx.android.synthetic.main.app_bar_menu.*
 import kotlinx.android.synthetic.main.nav_header_menu.*
+import org.json.JSONObject
+
 
 class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     var USERNAME = ""
@@ -56,12 +60,29 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             println("Current user instance logged in as ${currentUser.printUser()}")
 
 
-
         //ToDo: Get chatrooms of this user
-        var chatrooms = getChatroomsForUser(currentUser)
+        val chatrooms_json = getChatroomsForUser(currentUser)
+
+        if(chatrooms_json == null)
+            return
+
+        //ToDo: Save chatrooms in a file:
+        writeToFile("chatrooms.json", chatrooms_json.toString(), false, this.baseContext)
+        //println("The chatroom file has been created and written")
+
+        //ToDo: Parse json chatrooms into a ArrayList of chatrooms
+        val chatrooms_list = parseChatroomsFromJSON(chatrooms_json)
+
+
+
+        //Checking content of chatroom file
+        val file_content = readFromFile("chatrooms.json", this.baseContext)
+
+        //ToDo: Draw the chatrooms as elements on the activity:
+
     }
 
-    override fun onBackPressed() {
+override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
@@ -93,6 +114,12 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 // Handle the camera action
             }
             R.id.nav_gallery -> {
+                //ToDo: Open FTP activity
+                var intent = Intent(this@MenuActivity, FtpActivity::class.java)
+                //intent.putExtra("USERNAME", USER)
+                //intent.putExtra("DISPLAYNAME", DISPLAYNAME)
+                runOnUiThread { startActivity(intent)}
+
 
             }
             R.id.nav_slideshow -> {
@@ -120,5 +147,9 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //img_profilePicture.setImageResource()
     }
 
+
+    fun writeChatroomsToFile(chats : JSONObject){
+
+    }
 
 }

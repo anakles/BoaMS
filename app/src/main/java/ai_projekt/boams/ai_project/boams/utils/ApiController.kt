@@ -3,16 +3,14 @@ package ai_projekt.boams.ai_project.boams.utils
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import org.w3c.dom.Node
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.lang.IndexOutOfBoundsException
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.*
 
 class ApiController {
-    val API_URL = "http://qj6wy3ivstgbxxcx.myfritz.net"
+    val API_URL = "http://9ntfn2zneyc83qlo.myfritz.net"
     val API_PORT = 3306
 
 
@@ -185,6 +183,7 @@ class ApiController {
             )
             println("Parsed Json (Array) is: $jsonArray")
 
+            //"data" is the key to extract the array from the JSONObject
             return JSONObject( "{ \"data\" : " +jsonArray.toString()+ "}")
         }
 
