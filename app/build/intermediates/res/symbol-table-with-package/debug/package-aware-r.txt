@@ -1015,6 +1015,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_action_ftp
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_menu_camera
@@ -1083,6 +1084,7 @@ id beginning
 id blocking
 id bottom
 id btn_login
+id button
 id buttonPanel
 id cancel_action
 id center
@@ -1119,7 +1121,6 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
-id fab
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1137,6 +1138,7 @@ id icon
 id icon_group
 id ifRoom
 id image
+id imageView3
 id img_profilePicture
 id info
 id invisible
@@ -1144,6 +1146,7 @@ id italic
 id item_touch_helper_previous_elevation
 id labeled
 id largeLabel
+id layout_fragment
 id left
 id line1
 id line3
@@ -1158,12 +1161,10 @@ id mtrl_child_content_container
 id mtrl_internal_children_alpha_tag
 id multiply
 id name_textview
-id nav_camera
-id nav_gallery
-id nav_manage
+id nav_chat
+id nav_ftp
 id nav_send
 id nav_share
-id nav_slideshow
 id nav_view
 id navigation_header_container
 id never
@@ -1338,6 +1339,7 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout fragment_chats
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout nav_header_menu
@@ -1363,6 +1365,7 @@ layout select_dialog_singlechoice_material
 layout support_simple_spinner_dropdown_item
 menu activity_menu_drawer
 menu menu
+mipmap ic_boams
 mipmap ic_launcher
 mipmap ic_launcher_round
 string abc_action_bar_home_description
@@ -1404,6 +1407,8 @@ string abc_searchview_description_voice
 string abc_shareactionprovider_share_with
 string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
+string action_chat
+string action_ftp
 string action_settings
 string app_name
 string appbar_scrolling_view_behavior
@@ -1413,6 +1418,12 @@ string character_counter_pattern
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string hide_bottom_view_on_scroll_behavior
+string menu_gallery
+string menu_home
+string menu_send
+string menu_share
+string menu_slideshow
+string menu_tools
 string mtrl_chip_close_icon_content_description
 string nav_header_desc
 string nav_header_subtitle
@@ -1426,6 +1437,9 @@ string path_password_eye_mask_visible
 string path_password_strike_through
 string search_menu_title
 string status_bar_notification_info_overflow
+string title_activity_base
+string title_activity_ftp
+string title_activity_main2
 string title_activity_menu
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
@@ -1435,6 +1449,7 @@ style Animation_AppCompat_Tooltip
 style Animation_Design_BottomSheetDialog
 style AppTheme
 style AppTheme_AppBarOverlay
+style AppTheme_NoActionBar
 style AppTheme_PopupOverlay
 style Base_AlertDialog_AppCompat
 style Base_AlertDialog_AppCompat_Light

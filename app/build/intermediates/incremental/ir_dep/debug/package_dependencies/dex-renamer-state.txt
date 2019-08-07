@@ -1,4 +1,4 @@
-#Sun Jun 16 12:47:05 CEST 2019
+#Wed Aug 07 19:04:36 CEST 2019
 base.0=C\:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\10
 path.0=classes.dex
 renamed.0=classes.dex

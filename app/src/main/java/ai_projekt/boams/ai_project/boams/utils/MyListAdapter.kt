@@ -1,13 +1,12 @@
 package ai_projekt.boams.ai_project.boams.utils
 import ai_projekt.boams.R
-import ai_projekt.boams.ai_project.boams.ftpFiles
+import ai_projekt.boams.ftpFiles
 import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.ImageView
 import android.widget.TextView
 import org.apache.commons.net.ftp.FTPFile
 

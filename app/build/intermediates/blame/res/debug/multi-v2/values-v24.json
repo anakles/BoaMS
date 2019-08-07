@@ -4,17 +4,7 @@
             "outputFile": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v24\\values-v24.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\28b184483f38d21c1aac0ab1b30ed486\\res\\values-v24\\values-v24.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,212",
-                        "endColumns": "156,134",
-                        "endOffsets": "207,342"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\344640829381c3f70300a042d56e9dc2\\res\\values-v24\\values-v24.xml",
+                    "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\cff66439200fa9a5e6b6574272a995ba\\res\\values-v24\\values-v24.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -28,6 +18,16 @@
                         "startOffsets": "347,413,474,540",
                         "endColumns": "65,60,65,66",
                         "endOffsets": "408,469,535,602"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\values-v24\\values-v24.xml",
+                    "from": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,212",
+                        "endColumns": "156,134",
+                        "endOffsets": "207,342"
                     }
                 }
             ]

@@ -89,6 +89,7 @@ class MainActivity : AppCompatActivity() {
                     var intent = Intent(this@MainActivity, MenuActivity::class.java)
                     intent.putExtra("USERNAME", USER)
                     intent.putExtra("DISPLAYNAME", DISPLAYNAME)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     runOnUiThread { startActivity(intent)}
                 }
 

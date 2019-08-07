@@ -11,6 +11,7 @@ import java.net.URL
 
 class ApiController {
     val API_URL = "http://9ntfn2zneyc83qlo.myfritz.net"
+    //val API_URL = "http://192.168.178.24"
     val API_PORT = 3306
 
 

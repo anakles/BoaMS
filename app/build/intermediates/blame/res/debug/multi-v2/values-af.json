@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-af\\values-af.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\28b184483f38d21c1aac0ab1b30ed486\\res\\values-af\\values-af.xml",
+                    "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\values-af\\values-af.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\fc08ac89c842173ba6aa38673061daee\\res\\values-af\\values-af.xml",
+                    "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\90817906e0510212f7d85a6605e84e06\\res\\values-af\\values-af.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

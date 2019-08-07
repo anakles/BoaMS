@@ -9,11 +9,16 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start"
         android:background="@color/colorAccent">
-
     <include
             layout="@layout/app_bar_menu"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/layout_fragment" android:layout_marginTop="55dp">
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"

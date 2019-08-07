@@ -1,17 +1,18 @@
 package ai_projekt.boams
 
-import ai_projekt.boams.ai_project.boams.FtpActivity
 import ai_projekt.boams.ai_project.boams.entities.*
 import ai_projekt.boams.ai_project.boams.utils.*
-
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.support.design.widget.FloatingActionButton
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_menu.*
@@ -24,25 +25,27 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var USERNAME = ""
     var DISPLAYNAME = ""
 
+    val fragment_chats = Fragment_Chats()
+    val fragment_ftp = Fragment_FTP()
+    var current_fragment : Fragment ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
-
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
+        val navView: NavigationView = findViewById(R.id.nav_view)
         val toggle = ActionBarDrawerToggle(
-            this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
+            this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close
         )
-        drawer_layout.addDrawerListener(toggle)
+        drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        nav_view.setNavigationItemSelectedListener(this)
+        navView.setNavigationItemSelectedListener(this)
+        //navView.bringToFront()
 
 
         USERNAME = intent.getStringExtra("USERNAME")
@@ -102,7 +105,10 @@ override fun onBackPressed() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         when (item.itemId) {
-            R.id.action_settings -> return true
+            R.id.action_settings -> {
+
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -110,22 +116,33 @@ override fun onBackPressed() {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
         when (item.itemId) {
-            R.id.nav_camera -> {
-                // Handle the camera action
+            R.id.nav_chat -> {
+
+                println(">>>>>> LOG: Selected chat fragment")
+                if(current_fragment == null){
+                    supportFragmentManager.beginTransaction().add(R.id.layout_fragment, fragment_chats).commit()
+                }
+                else if(current_fragment == fragment_ftp){
+                    supportFragmentManager.beginTransaction().replace(R.id.layout_fragment, fragment_chats).commit()
+                }
+                current_fragment = fragment_chats
             }
-            R.id.nav_gallery -> {
-                //ToDo: Open FTP activity
+            R.id.nav_ftp -> {
+                /*//ToDo: Open FTP activity
                 var intent = Intent(this@MenuActivity, FtpActivity::class.java)
                 //intent.putExtra("USERNAME", USER)
                 //intent.putExtra("DISPLAYNAME", DISPLAYNAME)
                 runOnUiThread { startActivity(intent)}
+                */
 
-
-            }
-            R.id.nav_slideshow -> {
-
-            }
-            R.id.nav_manage -> {
+                println(">>>>>>> LOG: Selected FTP fragment")
+                if(current_fragment == null){
+                    supportFragmentManager.beginTransaction().add(R.id.layout_fragment, fragment_ftp).commit()
+                }
+                else {
+                    supportFragmentManager.beginTransaction().replace(R.id.layout_fragment, fragment_ftp).commit()
+                }
+                current_fragment = fragment_ftp
 
             }
             R.id.nav_share -> {
@@ -145,11 +162,6 @@ override fun onBackPressed() {
         txt_subUsername.text = USERNAME
         //Later setting individual user img
         //img_profilePicture.setImageResource()
-    }
-
-
-    fun writeChatroomsToFile(chats : JSONObject){
-
     }
 
 }
