@@ -25,7 +25,7 @@ fun parseChatroomsFromJSON(chatrooms_json : JSONArray) : ArrayList<Chatroom>{
     if(chatrooms_json.isNull(0))
         return chatrooms
 
-    for (i in 0..chatrooms_json.length()-1){
+    for (i in 0 until chatrooms_json.length()){
         val json = chatrooms_json.get(i) as JSONObject
 
         //ToDo: repeat for each chatroom

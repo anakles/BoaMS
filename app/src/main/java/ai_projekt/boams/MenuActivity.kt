@@ -25,8 +25,6 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     var USERNAME = ""
     var DISPLAYNAME = ""
 
-    val fragment_chats = Fragment_Chats()
-    val fragment_ftp = Fragment_FTP()
     var current_fragment : Fragment ?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,7 +87,12 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //Checking content of chatroom file
         val file_content = readFromFile(R.string.path_chatrooms.toString(), this.baseContext)
 
-        //ToDo: Draw the chatrooms as elements on the activity:
+        //Draw the chatrooms as elements on the activity:
+        //Initially start the chat fragment:
+
+        val temp_fragment = Fragment_Chats()
+        current_fragment = temp_fragment
+        supportFragmentManager.beginTransaction().add(R.id.layout_fragment, temp_fragment).commit()
 
     }
 
@@ -123,34 +126,35 @@ override fun onBackPressed() {
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
+        val temp_fragment = current_fragment
+
         when (item.itemId) {
             R.id.nav_chat -> {
 
+                val new_fragment = Fragment_Chats()
                 println(">>>>>> LOG: Selected chat fragment")
-                if(current_fragment == null){
-                    supportFragmentManager.beginTransaction().add(R.id.layout_fragment, fragment_chats).commit()
-                }
-                else if(current_fragment == fragment_ftp){
-                    supportFragmentManager.beginTransaction().replace(R.id.layout_fragment, fragment_chats).commit()
-                }
-                current_fragment = fragment_chats
-            }
-            R.id.nav_ftp -> {
-                /*//ToDo: Open FTP activity
-                var intent = Intent(this@MenuActivity, FtpActivity::class.java)
-                //intent.putExtra("USERNAME", USER)
-                //intent.putExtra("DISPLAYNAME", DISPLAYNAME)
-                runOnUiThread { startActivity(intent)}
-                */
 
-                println(">>>>>>> LOG: Selected FTP fragment")
-                if(current_fragment == null){
-                    supportFragmentManager.beginTransaction().add(R.id.layout_fragment, fragment_ftp).commit()
+                if(temp_fragment == null) {
+                    supportFragmentManager.beginTransaction().add(R.id.layout_fragment, new_fragment).commit()
                 }
                 else {
-                    supportFragmentManager.beginTransaction().replace(R.id.layout_fragment, fragment_ftp).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.layout_fragment, new_fragment).commit()
                 }
-                current_fragment = fragment_ftp
+                current_fragment = new_fragment
+
+            }
+            R.id.nav_ftp -> {
+
+                val new_fragment = Fragment_FTP()
+                println(">>>>>>> LOG: Selected FTP fragment")
+
+                if(temp_fragment == null) {
+                    supportFragmentManager.beginTransaction().add(R.id.layout_fragment, new_fragment).commit()
+                }
+                else {
+                    supportFragmentManager.beginTransaction().replace(R.id.layout_fragment, new_fragment).commit()
+                }
+                current_fragment = new_fragment
 
             }
             R.id.nav_share -> {

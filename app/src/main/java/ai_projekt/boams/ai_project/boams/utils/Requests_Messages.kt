@@ -7,3 +7,9 @@ fun getMessages(){
     val controller = ApiController()
     val json = controller.sendGetCommand("/messages")
 }
+
+/**Command:  */
+fun getMessagesOfChatroom(chatroom_id : Int){
+
+
+}

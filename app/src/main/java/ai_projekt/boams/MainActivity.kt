@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     val SSLPORT = 636
     var USER : String? = null
     var DISPLAYNAME = ""
+    var PWD = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,6 +90,7 @@ class MainActivity : AppCompatActivity() {
                     var intent = Intent(this@MainActivity, MenuActivity::class.java)
                     intent.putExtra("USERNAME", USER)
                     intent.putExtra("DISPLAYNAME", DISPLAYNAME)
+                    intent.putExtra("PWD", PWD)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     runOnUiThread { startActivity(intent)}
                 }
@@ -113,6 +115,7 @@ class MainActivity : AppCompatActivity() {
         runOnUiThread {
             txt_loadingNotification.setTextColor(ContextCompat.getColor(this, R.color.colorTextWrong))
             txt_loadingNotification.text = "Falsche Zugangsdaten"
+            txt_password.text.clear()
         }
     }
 
@@ -150,6 +153,7 @@ class MainActivity : AppCompatActivity() {
             val entry = ldapConnection.getEntry(BINDDN)
             //Get the display name from the queried entry
             DISPLAYNAME = entry.getAttributeValue("DisplayName")
+            PWD = pwd
 
             //ToDo: Remove later:
             println("Closing connection...")

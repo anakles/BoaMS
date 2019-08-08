@@ -11,7 +11,7 @@ import android.widget.TextView
 import org.apache.commons.net.ftp.FTPFile
 
 
-class MyListAdapter(var mCtx:Context , var resource:Int,var items:List<FTPFile>) :ArrayAdapter<FTPFile>( mCtx , resource , items )
+class MyListAdapter(var mCtx:Context? , var resource:Int,var items:List<Any>) :ArrayAdapter<Any>( mCtx , resource , items )
 {
 
 

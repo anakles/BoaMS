@@ -7,7 +7,6 @@ import ai_projekt.boams.ai_project.boams.entities.parseChatroomsFromJSON
 import ai_projekt.boams.ai_project.boams.utils.ApiController
 import ai_projekt.boams.ai_project.boams.utils.getChatroomsForUser
 import ai_projekt.boams.ai_project.boams.utils.readFromFile
-import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
@@ -17,31 +16,33 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import org.json.JSONArray
-import org.json.JSONObject
-import java.io.File
 
 class Fragment_Chats : Fragment(){
+
+    var arrayAdapter : ArrayAdapter<Any> ?= null
+    var listChats : ListView ?= null
+    var arrayChats : ArrayList<Chatroom> ?= null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_chats, container, false)
 
-
-
         //Getting the list of chatrooms for this user:
-        val arrayChats : ArrayList<Chatroom> = getChatrooms()
-        if(arrayChats.isEmpty()){
+        arrayChats = getChatrooms()
+        val temp_array = arrayChats
+        if(temp_array!!.isEmpty()){
             Log.d("DEBUG", "There are no chatrooms to be displayed")
         }
 
-        val listChats = view.findViewById<ListView>(R.id.list_chats)
-        val arrayAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, arrayChats.toArray())
-        listChats.adapter = arrayAdapter
+        listChats = view!!.findViewById<ListView>(R.id.list_chats)
+        arrayAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, temp_array?.toArray())
+        listChats?.adapter = arrayAdapter
 
         return view
     }
 
 
-    private fun getChatrooms () : ArrayList<Chatroom> {
+
+    private fun getChatrooms () : java.util.ArrayList<Chatroom> {
 
         //Check if local userfile exists:
         //val userprofile = File(R.string.path_userprofile.toString())
