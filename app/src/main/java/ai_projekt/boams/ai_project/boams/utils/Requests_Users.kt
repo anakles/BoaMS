@@ -26,8 +26,7 @@ fun getUserByLoginName (loginname: String) : User? {
     if(json == null)
         return null
 
-    var user = User()
-    user.createUser(
+    var user = User(
         json.getInt("user_id"),
         json.getString("login_name"),
         json.getString("display_name")

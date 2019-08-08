@@ -1,5 +1,6 @@
 package ai_projekt.boams.ai_project.boams.utils
 
+import android.content.Context
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -8,6 +9,12 @@ import java.io.InputStreamReader
 import java.lang.IndexOutOfBoundsException
 import java.net.HttpURLConnection
 import java.net.URL
+import android.net.NetworkInfo
+import android.content.Context.CONNECTIVITY_SERVICE
+import android.support.v4.content.ContextCompat.getSystemService
+import android.net.ConnectivityManager
+import android.widget.Toast
+
 
 class ApiController {
     val API_URL = "http://9ntfn2zneyc83qlo.myfritz.net"
@@ -157,7 +164,7 @@ class ApiController {
         return jsonResponse
     }
 
-    private fun parseJson(rawJson : String) : JSONObject? {
+     fun parseJson(rawJson : String) : JSONObject? {
         //Catch exception for "empty" JSON strings (IndexOutOfBounds):
 
         try {
@@ -189,5 +196,22 @@ class ApiController {
         }
 
         return null
+    }
+
+    public fun isNetworkOnline(context : Context): Boolean {
+        var status = false
+
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetworkInfo = connectivityManager.activeNetworkInfo
+
+        if (activeNetworkInfo != null && activeNetworkInfo.isConnected) {
+            Toast.makeText(context, "Connected", Toast.LENGTH_LONG).show()
+            status = true
+        } else {
+            Toast.makeText(context, "Not Connected", Toast.LENGTH_LONG).show()
+            status = false
+        }
+
+        return status
     }
 }

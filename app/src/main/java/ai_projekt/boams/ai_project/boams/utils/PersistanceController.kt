@@ -24,6 +24,9 @@ fun writeToFile(filename : String, content : String, append : Boolean, context :
 
         outputStream.flush()
         outputStream.close()
+
+        Log.d("DEBUG", "Created file $filename with the content: $content")
+
     } catch (e: Exception) {
         e.printStackTrace()
     }

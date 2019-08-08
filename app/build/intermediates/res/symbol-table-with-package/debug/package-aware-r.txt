@@ -1084,7 +1084,6 @@ id beginning
 id blocking
 id bottom
 id btn_login
-id button
 id buttonPanel
 id cancel_action
 id center
@@ -1151,6 +1150,7 @@ id left
 id line1
 id line3
 id listMode
+id list_chats
 id list_item
 id masked
 id media_actions
@@ -1196,6 +1196,7 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
+id scrollView2
 id scrollable
 id search_badge
 id search_bar
@@ -1431,10 +1432,12 @@ string nav_header_title
 string navigation_drawer_close
 string navigation_drawer_open
 string password_toggle_content_description
+string path_chatrooms
 string path_password_eye
 string path_password_eye_mask_strike_through
 string path_password_eye_mask_visible
 string path_password_strike_through
+string path_userprofile
 string search_menu_title
 string status_bar_notification_info_overflow
 string title_activity_base

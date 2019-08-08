@@ -47,11 +47,18 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navView.setNavigationItemSelectedListener(this)
         //navView.bringToFront()
 
+        //-------------------------------------------------------------------
 
         USERNAME = intent.getStringExtra("USERNAME")
         DISPLAYNAME = intent.getStringExtra("DISPLAYNAME")
 
         println("The submitted username is: $USERNAME ($DISPLAYNAME)")
+
+        if(USERNAME == "admin") {
+            writeToFile(R.string.path_userprofile.toString(), User(0, "admin", "admin").toJson().toString(), false, baseContext)
+            return
+        }
+
 
         println("Creating current user instance...")
         val currentUser = getUserByLoginName(USERNAME)
@@ -59,9 +66,10 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             println("ERROR @ Requesting this user")
             return
         }
-        else
+        else {
             println("Current user instance logged in as ${currentUser.printUser()}")
-
+            writeToFile(R.string.path_userprofile.toString(), currentUser.toJson().toString(), false, this.baseContext)
+        }
 
         //ToDo: Get chatrooms of this user
         val chatrooms_json = getChatroomsForUser(currentUser)
@@ -70,7 +78,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             return
 
         //ToDo: Save chatrooms in a file:
-        writeToFile("chatrooms.json", chatrooms_json.toString(), false, this.baseContext)
+        writeToFile(R.string.path_chatrooms.toString(), chatrooms_json.toString(), false, this.baseContext)
         //println("The chatroom file has been created and written")
 
         //ToDo: Parse json chatrooms into a ArrayList of chatrooms
@@ -79,7 +87,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         //Checking content of chatroom file
-        val file_content = readFromFile("chatrooms.json", this.baseContext)
+        val file_content = readFromFile(R.string.path_chatrooms.toString(), this.baseContext)
 
         //ToDo: Draw the chatrooms as elements on the activity:
 
@@ -160,7 +168,7 @@ override fun onBackPressed() {
     private fun initInterface(){
         txt_username.text = DISPLAYNAME
         txt_subUsername.text = USERNAME
-        //Later setting individual user img
+        //ToDo: Later setting individual user img
         //img_profilePicture.setImageResource()
     }
 

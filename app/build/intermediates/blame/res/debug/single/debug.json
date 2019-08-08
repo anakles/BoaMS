@@ -260,12 +260,12 @@
         "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\drawable\\abc_item_background_holo_dark.xml"
     },
     {
-        "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\layout_support_simple_spinner_dropdown_item.xml.flat",
-        "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
-    },
-    {
         "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
         "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\layout_support_simple_spinner_dropdown_item.xml.flat",
+        "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_black_16dp.png.flat",
