@@ -1,47 +1,18 @@
 package ai_projekt.boams.ai_project.boams.entities
 
-import java.sql.Connection
+import org.json.JSONObject
 
-class Message {
-    var message_text: String? = null
-    var message_author: Int? = null
-    var message_chatroom_id: Int? = null
+class Message (var message_id : Int, var message_author : Int, var message_chatroom_id : Int, var message_text : String) {
 
-    fun createMessage(conn: Connection, text: String, name: String, chatroom: String) {
-        message_text = text
+    constructor(json : JSONObject):this(
+        json.getInt("message_id"),
+        json.getInt("message_author_id"),
+        json.getInt("message_chatroom_id"),
+        json.getString("message_txt")
+    )
 
-        message_author = executeStatement_requestAuthorId(conn, name)
-        if (message_author == 0) {
-            println("There is no author with this name")
-            return
-        }
-
-        message_chatroom_id = executeStatement_requestChatroomId(conn, chatroom)
-        if (message_chatroom_id == 0) {
-            println("There is no chatroom with this name")
-            return
-        }
-
-        val updatedRows = executeStatement_createMessage(conn)
-        if (updatedRows == 0)
-            println("ERROR >>> Message could not be created")
+    override fun toString(): String {
+        return "$message_author: << $message_text >>"
     }
 
-
-    fun executeStatement_requestAuthorId(conn: Connection, name: String): Int {
-
-        return 0
-    }
-
-
-    fun executeStatement_requestChatroomId(conn: Connection, chatroom_name: String): Int {
-
-        return 0
-    }
-
-
-    fun executeStatement_createMessage(conn: Connection): Int {
-
-        return 0
-    }
 }

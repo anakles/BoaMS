@@ -83,7 +83,6 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val chatrooms_list = parseChatroomsFromJSON(chatrooms_json)
 
 
-
         //Checking content of chatroom file
         val file_content = readFromFile(R.string.path_chatrooms.toString(), this.baseContext)
 

@@ -1151,8 +1151,8 @@ id line1
 id line3
 id listMode
 id list_chats
-id list_ftp
 id list_item
+id list_messages
 id masked
 id media_actions
 id message
@@ -1321,11 +1321,9 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
-layout activity_ftp
 layout activity_main
 layout activity_menu
 layout app_bar_menu
-layout content_ftp
 layout content_menu
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -1343,6 +1341,7 @@ layout design_navigation_menu_item
 layout design_text_input_password_icon
 layout fragment_chats
 layout fragment_ftp
+layout fragment_message
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout nav_header_menu
@@ -1361,7 +1360,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
-layout row_main
+layout row_main_ftp
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material

@@ -23,10 +23,5 @@ fun getChatroomsFromJson(json : JSONObject){
         val json_chat = json_chatrooms.getJSONObject(i)
 
         //parse json chatroom object into kotlin object:
-
-
-
-
     }
-
 }

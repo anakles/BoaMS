@@ -1,8 +1,8 @@
 package ai_projekt.boams.ai_project.boams.utils
 import ai_projekt.boams.R
-import ai_projekt.boams.ftpFiles
 import android.content.Context
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +11,8 @@ import android.widget.TextView
 import org.apache.commons.net.ftp.FTPFile
 
 
-class MyListAdapter(var mCtx:Context? , var resource:Int,var items:List<Any>) :ArrayAdapter<Any>( mCtx , resource , items )
+class FTP_ListAdapter(var mCtx:Context?, var resource:Int, var items:List<FTPFile>) :ArrayAdapter<FTPFile>( mCtx , resource , items )
 {
-
 
     override fun getView(position: Int, convertView: View?, viewGroup: ViewGroup?): View
     {
@@ -22,6 +21,7 @@ class MyListAdapter(var mCtx:Context? , var resource:Int,var items:List<Any>) :A
 
         val rowMain :View = layoutInflator.inflate(resource, null)
 
+      //  val rowMain :View = layoutInflator.inflate(resource,viewGroup,false)
 
         //Grey Background
         if (position % 2 == 0)
@@ -31,7 +31,10 @@ class MyListAdapter(var mCtx:Context? , var resource:Int,var items:List<Any>) :A
 
         val nameTextView = rowMain.findViewById<TextView>(R.id.name_textview)
 
-        nameTextView.text = ftpFiles.get(position).getName()
+
+        System.out.println("Filling the TextViews with the Names...")
+        System.out.println("It's: " + items.get(position).name)
+        nameTextView.text = items.get(position).name
 
 
         return rowMain

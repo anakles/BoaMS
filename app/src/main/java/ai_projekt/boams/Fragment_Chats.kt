@@ -16,6 +16,11 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import org.json.JSONArray
+import android.widget.Toast
+import android.widget.AdapterView
+import android.widget.AdapterView.OnItemClickListener
+
+
 
 class Fragment_Chats : Fragment(){
 
@@ -36,6 +41,17 @@ class Fragment_Chats : Fragment(){
         listChats = view!!.findViewById<ListView>(R.id.list_chats)
         arrayAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, temp_array?.toArray())
         listChats?.adapter = arrayAdapter
+
+
+        listChats?.setOnItemClickListener(
+            OnItemClickListener {
+                parent, view, position, id ->
+                    val chat = listChats?.getItemAtPosition(position) as Chatroom
+                    val fragment_messages = Fragment_Message()
+                    fragment_messages.corresponding_chatroom = chat
+                    activity!!.supportFragmentManager.beginTransaction().replace(R.id.layout_fragment, fragment_messages).commit()
+
+        })
 
         return view
     }
