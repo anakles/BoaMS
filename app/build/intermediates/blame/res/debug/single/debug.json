@@ -264,12 +264,12 @@
         "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\drawable\\abc_item_background_holo_dark.xml"
     },
     {
-        "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\layout_support_simple_spinner_dropdown_item.xml.flat",
-        "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
-    },
-    {
         "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_star_half_black_36dp.png.flat",
         "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\drawable-xxhdpi-v4\\abc_ic_star_half_black_36dp.png"
+    },
+    {
+        "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\layout_support_simple_spinner_dropdown_item.xml.flat",
+        "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
     },
     {
         "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_star_black_16dp.png.flat",
@@ -466,10 +466,6 @@
     {
         "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\drawable-xxhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
-    },
-    {
-        "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\layout_row_main_ftp.xml.flat",
-        "source": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\src\\main\\res\\layout\\row_main_ftp.xml"
     },
     {
         "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_action_ftp.png.flat",
@@ -1390,6 +1386,10 @@
     {
         "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
         "source": "C:\\Users\\nikla\\.gradle\\caches\\transforms-2\\files-2.1\\9511b96793f2b50e496dd4b07f88e7c1\\res\\drawable-mdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\layout_row_main_boa_ms.xml.flat",
+        "source": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\src\\main\\res\\layout\\row_main_boa_ms.xml"
     },
     {
         "merged": "C:\\Users\\nikla\\AndroidStudioProjects\\BoaMS\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",

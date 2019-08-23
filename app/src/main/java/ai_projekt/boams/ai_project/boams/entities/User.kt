@@ -1,5 +1,7 @@
 package ai_projekt.boams.ai_project.boams.entities
 
+import ai_projekt.boams.ai_project.boams.utils.readFromFile
+import android.content.Context
 import org.json.JSONObject
 import java.time.LocalDateTime
 import java.util.*
@@ -25,6 +27,11 @@ class User(var userId: Int, var username : String, var displayName : String){
         return  userJson
     }
 
+    fun getCurrentUserFromFile(context : Context) : User{
+        val file_content = readFromFile("userprofile.json", context)
+        val json = JSONObject(file_content)
 
+        return User(json)
+    }
 
 }

@@ -1,30 +1,23 @@
 package ai_projekt.boams
 
-import ai_projekt.boams.ai_project.boams.entities.Chatroom
-import ai_projekt.boams.ai_project.boams.entities.User
-import ai_projekt.boams.ai_project.boams.entities.getExampleChatrooms
-import ai_projekt.boams.ai_project.boams.entities.parseChatroomsFromJSON
-import ai_projekt.boams.ai_project.boams.utils.ApiController
-import ai_projekt.boams.ai_project.boams.utils.getChatroomsForUser
-import ai_projekt.boams.ai_project.boams.utils.readFromFile
+import ai_projekt.boams.ai_project.boams.entities.*
+import ai_projekt.boams.ai_project.boams.utils.*
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ListView
 import org.json.JSONArray
-import android.widget.Toast
-import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 
 
 
 class Fragment_Chats : Fragment(){
 
-    var arrayAdapter : ArrayAdapter<Any> ?= null
+    //var arrayAdapter : ArrayAdapter<Any> ?= null
+    var arrayAdapter : BoaMS_ListAdapter ?= null
     var listChats : ListView ?= null
     var arrayChats : ArrayList<Chatroom> ?= null
 
@@ -39,7 +32,8 @@ class Fragment_Chats : Fragment(){
         }
 
         listChats = view!!.findViewById<ListView>(R.id.list_chats)
-        arrayAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, temp_array?.toArray())
+        //arrayAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, temp_array?.toArray())
+        arrayAdapter = BoaMS_ListAdapter(context, R.layout.row_main_boa_ms, temp_array)
         listChats?.adapter = arrayAdapter
 
 
@@ -71,23 +65,23 @@ class Fragment_Chats : Fragment(){
           Log.d("DEBUG", "Found an existing userprofile")
         */
         val user_json = ApiController().parseJson(readFromFile(R.string.path_userprofile.toString(), activity!!.baseContext))
-        if(user_json != null) {
-            //Create user from file content
-            current_user = User(user_json)
+                if(user_json != null) {
+                    //Create user from file content
+                    current_user = User(user_json)
 
-            //Special user for tests
-            if (current_user.username == "admin"){
-                Log.d("DEBUG", "Registered the admin test account as user")
-                return getExampleChatrooms()
-            }
+                    //Special user for tests
+                    if (current_user.username == "admin"){
+                        Log.d("DEBUG", "Registered the admin test account as user")
+                        return getExampleChatrooms()
+                    }
 
-            //Scenario 1: Check online connection for valid users:
-            if (ApiController().isNetworkOnline(activity!!.baseContext)) {
-                val temp = getChatroomsForUser(current_user)
-                if (temp != null){
-                    Log.d("DEBUG", "Registered the ${current_user.displayName} account as user")
-                    return parseChatroomsFromJSON(temp)
-                }
+                    //Scenario 1: Check online connection for valid users:
+                    if (ApiController().isNetworkOnline(activity!!.baseContext)) {
+                        val temp = getChatroomsForUser(current_user)
+                        if (temp != null){
+                            Log.d("DEBUG", "Registered the ${current_user.displayName} account as user")
+                            return parseChatroomsFromJSON(temp)
+                        }
             }
         }
         //Scenario 2: Network offline: read chatrooms from file:

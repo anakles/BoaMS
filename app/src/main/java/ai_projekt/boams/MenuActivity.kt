@@ -69,6 +69,8 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             writeToFile(R.string.path_userprofile.toString(), currentUser.toJson().toString(), false, this.baseContext)
         }
 
+
+
         //ToDo: Get chatrooms of this user
         val chatrooms_json = getChatroomsForUser(currentUser)
 
@@ -86,12 +88,10 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //Checking content of chatroom file
         val file_content = readFromFile(R.string.path_chatrooms.toString(), this.baseContext)
 
-        //Draw the chatrooms as elements on the activity:
-        //Initially start the chat fragment:
+        //Select the chatroom view as initial view:
+        onNavigationItemSelected(navView.menu.findItem(R.id.nav_chat))
 
-        val temp_fragment = Fragment_Chats()
-        current_fragment = temp_fragment
-        supportFragmentManager.beginTransaction().add(R.id.layout_fragment, temp_fragment).commit()
+
 
     }
 

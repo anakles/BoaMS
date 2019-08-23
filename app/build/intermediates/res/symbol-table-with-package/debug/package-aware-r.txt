@@ -1085,6 +1085,7 @@ id blocking
 id bottom
 id btn_login
 id buttonPanel
+id button_send_message
 id cancel_action
 id center
 id center_horizontal
@@ -1197,7 +1198,6 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
-id scrollView2
 id scrollable
 id search_badge
 id search_bar
@@ -1260,6 +1260,7 @@ id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
 id txt_loadingNotification
+id txt_message
 id txt_password
 id txt_subUsername
 id txt_username
@@ -1360,7 +1361,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
-layout row_main_ftp
+layout row_main_boa_ms
 layout select_dialog_item_material
 layout select_dialog_multichoice_material
 layout select_dialog_singlechoice_material

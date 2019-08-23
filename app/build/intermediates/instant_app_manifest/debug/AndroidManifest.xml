@@ -40,11 +40,6 @@
             android:label="@string/title_activity_ftp"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-
-        <provider
-            android:name="com.android.tools.ir.server.InstantRunContentProvider"
-            android:authorities="ai_projekt.boams.com.android.tools.ir.server.InstantRunContentProvider"
-            android:multiprocess="true" />
     </application>
 
 </manifest>
