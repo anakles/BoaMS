@@ -96,11 +96,15 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
 override fun onBackPressed() {
-        if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+
+    //Select the chatroom view as initial view:
+    val navView : NavigationView = findViewById(R.id.nav_view)
+    onNavigationItemSelected(navView.menu.findItem(R.id.nav_chat))
+    /*    if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
-        }
+        }*/
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

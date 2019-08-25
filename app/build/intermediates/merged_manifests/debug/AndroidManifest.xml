@@ -34,11 +34,6 @@
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme" >
         </activity>
-        <activity
-            android:name="ai_projekt.boams.FtpActivity"
-            android:label="@string/title_activity_ftp"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
     </application>
 
 </manifest>

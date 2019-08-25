@@ -9,11 +9,10 @@ import java.io.InputStreamReader
 import java.lang.IndexOutOfBoundsException
 import java.net.HttpURLConnection
 import java.net.URL
-import android.net.NetworkInfo
-import android.content.Context.CONNECTIVITY_SERVICE
-import android.support.v4.content.ContextCompat.getSystemService
 import android.net.ConnectivityManager
 import android.widget.Toast
+import java.io.BufferedWriter
+import java.io.OutputStreamWriter
 
 
 class ApiController {
@@ -59,30 +58,31 @@ class ApiController {
     }
 
 
-    fun sendPostCommand (command : String) : JSONObject? {
+    fun sendPostCommand (command : String, json_body : JSONObject) : Int {
         val url = URL("${this.API_URL}:${this.API_PORT}$command")
-        var jsonResponse : JSONObject ?= null
+        var apiResponseCode = 0
 
         val apiRunnable = Runnable {
             with(url.openConnection() as HttpURLConnection) {
 
-                requestMethod = "POST"
+
+                //setRequestProperty("charset", "utf-8")
+                setRequestProperty("Content-Type", "application/json")
+
+                //requestMethod = "POST"
+                doOutput = true
 
                 println("\nSending 'POST' request to URL : $url")
-                println("Response Code : $responseCode")
 
-                BufferedReader(InputStreamReader(inputStream)).use {
-                    val response = StringBuffer()
 
-                    var inputLine = it.readLine()
-                    while (inputLine != null) {
-                        response.append(inputLine)
-                        inputLine = it.readLine()
-                    }
-                    //Parse JSON string to Object:
-                    jsonResponse = parseJson(response.toString())
-
+                BufferedWriter(OutputStreamWriter(outputStream)).use {
+                    outputStream.write(json_body.toString().toByteArray())
+                    outputStream.flush()
                 }
+
+
+                apiResponseCode = responseCode
+                println("Response Code : $apiResponseCode")
             }
         }
 
@@ -92,9 +92,8 @@ class ApiController {
 
         apiThread.join()
 
-        return jsonResponse
+        return apiResponseCode
     }
-
 
     fun sendPutCommand (command : String) : JSONObject? {
         val url = URL("${this.API_URL}:${this.API_PORT}$command")
@@ -128,7 +127,6 @@ class ApiController {
 
         return jsonResponse
     }
-
 
     fun sendDeleteCommand (command : String) : JSONObject? {
         val url = URL("${this.API_URL}:${this.API_PORT}$command")
@@ -164,7 +162,7 @@ class ApiController {
         return jsonResponse
     }
 
-     fun parseJson(rawJson : String) : JSONObject? {
+    fun parseJson(rawJson : String) : JSONObject? {
         //Catch exception for "empty" JSON strings (IndexOutOfBounds):
 
         try {
@@ -198,7 +196,7 @@ class ApiController {
         return null
     }
 
-    public fun isNetworkOnline(context : Context): Boolean {
+    fun isNetworkOnline(context : Context): Boolean {
         var status = false
 
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

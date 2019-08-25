@@ -5,6 +5,7 @@ import ai_projekt.boams.ai_project.boams.entities.Message
 import ai_projekt.boams.ai_project.boams.entities.User
 import ai_projekt.boams.ai_project.boams.entities.getExampleMessages
 import ai_projekt.boams.ai_project.boams.utils.getMessagesOfChatroom
+import ai_projekt.boams.ai_project.boams.utils.postMessage
 import ai_projekt.boams.ai_project.boams.utils.readFromFile
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,7 +14,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
+import android.app.Activity
+import android.view.inputmethod.InputMethodManager
+
 
 class Fragment_Message : Fragment(){
 
@@ -36,13 +41,8 @@ class Fragment_Message : Fragment(){
         getMessages(corresponding_chatroom!!.chatroomId)
 
 
-        val temp_array = messages
-        if(temp_array.isEmpty()){
-            Log.d("DEBUG", "There are no messages to be displayed")
-        }
-
-        listMessages = view!!.findViewById<ListView>(R.id.list_messages)
-        arrayAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, temp_array?.toArray())
+        listMessages = view!!.findViewById(R.id.list_messages)
+        arrayAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, messages?.toArray())
         listMessages?.adapter = arrayAdapter
 
 
@@ -55,7 +55,6 @@ class Fragment_Message : Fragment(){
 
         return view
     }
-
 
     private fun getMessages(chatroom_id : Int) : ArrayList<Message> {
         val json = getMessagesOfChatroom(corresponding_chatroom!!.chatroomId)
@@ -75,25 +74,59 @@ class Fragment_Message : Fragment(){
         val message_txt = view!!.findViewById<TextView>(R.id.txt_message).text
         Log.d("DEBUG", "The entered message is: $message_txt")
 
-        if(message_txt == "")
+        if(message_txt.replace(Regex(" "), "") == ""){
             return
+        }
 
         //Get the needed information about the message:
-        val user = User(JSONObject(readFromFile("userprofile.json", context!!)))
+        val user = User(JSONObject(readFromFile(R.string.path_userprofile.toString(), context!!)))
 
         //Create message with the retrieved information:
         val new_message = Message(
+            0,
             user.userId,
             corresponding_chatroom!!.chatroomId,
             message_txt.toString())
 
+        //ToDo: Send message to api, then redraw the activity
+        val success = postMessage(new_message)
 
-        Toast.makeText(context, "Nachricht gesendet", Toast.LENGTH_SHORT)
+        //If the message was successfully sent, clear the textbox and lose the focus
+        if(success){
+            Toast.makeText(context, "Nachricht gesendet", Toast.LENGTH_LONG)
+            Log.d("BOAMS", "Nachricht gesendet")
+            view!!.findViewById<TextView>(R.id.txt_message).text = ""
+            view!!.findViewById<TextView>(R.id.txt_message).clearFocus()
 
+            //Refreshing the UI to show the new messages
+            messages.add(new_message)
+            activity?.runOnUiThread(Runnable {
+                arrayAdapter?.notifyDataSetChanged()
+                arrayAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, messages?.toArray())
+                listMessages?.adapter = arrayAdapter
+
+                view?.invalidate()
+            })
+
+            hideKeyboard(activity!!)
+        }
+
+        else {
+            Toast.makeText(context, "Nachricht konnte nicht gesendet werden", Toast.LENGTH_LONG)
+            Log.d("BOAMS", "Nachricht konnte nicht gesendet werden")
+        }
     }
 
 
-
-
-
+    // From : https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
+    fun hideKeyboard(activity: Activity) {
+        val imm = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        //Find the currently focused view, so we can grab the correct window token from it.
+        var view = activity.currentFocus
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = View(activity)
+        }
+        imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
 }

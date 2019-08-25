@@ -23,6 +23,16 @@ class Message (var message_id : Int, var message_author : Int, var message_chatr
         return "$message_author: << $message_text >>"
     }
 
+    fun toJson(): JSONObject {
+        val json = JSONObject()
+        json.put("message_id", message_id)
+        json.put("message_author_id", message_author)
+        json.put("message_chatroom_id", message_chatroom_id)
+        json.put("message_txt", message_text)
+
+        return json
+    }
+
 }
 
 fun getExampleMessages() : ArrayList<Message>{
