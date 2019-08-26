@@ -1,5 +1,9 @@
 package ai_projekt.boams.ai_project.boams.utils
 
+import ai_projekt.boams.ai_project.boams.entities.Chatroom
+import ai_projekt.boams.ai_project.boams.entities.Message
+import ai_projekt.boams.ai_project.boams.entities.User
+import android.util.Log
 import org.json.JSONObject
 
 /**Command: /chatrooms
@@ -9,7 +13,30 @@ fun getChatrooms() {
     val json = controller.sendGetCommand("/chatrooms")
 }
 
+//ToDo: Implement a method to react to the HTTP Return code: (like when the message wasn't sent)
+fun postChatroom(chatroom : Chatroom) : JSONObject? {
+    val controller = ApiController()
 
+    Log.d("BOAMS", "Trying to POST chatroom: ${chatroom.toJson().toString()}")
+
+    val responseEntity = controller.sendPostCommand("/chatrooms", chatroom.toJson())
+
+    println("CONTROL: Creating chatroom: $responseEntity")
+
+    return responseEntity
+}
+
+fun addUserToChatroom(chatroom : Chatroom, user : User) : JSONObject?  {
+
+    val controller = ApiController()
+    Log.d("BOAMS", "Trying to PUT user ${user.toJson().toString()} to chatroom: ${chatroom.toJson().toString()}")
+
+    val responseEntity = controller.sendPutCommand("/chatroom/${chatroom.chatroomId}/addUser/${user.userId}", chatroom.toJson())
+
+    println("CONTROL: Creating chatroom: $responseEntity")
+
+    return responseEntity
+}
 
 
 

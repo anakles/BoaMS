@@ -11,9 +11,17 @@ import java.io.OutputStreamWriter
 
 /**Command: /users
  * Returns all users */
-fun getUsers(){
+fun getUsers() : JSONArray ? {
     val controller = ApiController()
     val json = controller.sendGetCommand("/users")
+
+    if(json == null)
+        return null
+
+    val user_array = json.getJSONArray("data")
+    println("CONTROL: Found the following user: ${user_array}")
+
+    return user_array
 }
 
 

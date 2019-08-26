@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ai_projekt.boams.ai_project.boams.utils.FTP_ListAdapter
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Environment
@@ -15,11 +14,8 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.widget.*
-import kotlinx.android.synthetic.main.fragment_ftp.*
 import org.apache.commons.net.ftp.FTPSClient
 import org.apache.commons.net.ftp.FTP
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.apache.commons.net.ftp.FTPFile
 import java.io.BufferedOutputStream
 import java.io.FileOutputStream

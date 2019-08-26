@@ -7,7 +7,16 @@ import kotlin.collections.ArrayList
 
 class Chatroom(var chatroomId : Int, val chatroomName : String, val chatroomOwner : Int) {
 
+    var users : ArrayList<User>? = null
     var chatroom_creation_date : Date ?= null
+
+    constructor(json : JSONObject):this(
+        json.getInt("chatroom_id"),
+        json.getString("chatroom_name"),
+        json.getInt("chatroom_owner_id")
+    )
+
+
 
     override fun toString() : String {
         return "${chatroomName}"
@@ -15,6 +24,25 @@ class Chatroom(var chatroomId : Int, val chatroomName : String, val chatroomOwne
 
     fun setChatroomCreationDate(date : java.sql.Date) {
         chatroom_creation_date = date
+    }
+
+    fun toJson() : JSONObject {
+        val json = JSONObject()
+
+        if(chatroomId != 0)
+            json.put("chatroom_id", chatroomId)
+        json.put("chatroom_name", chatroomName)
+        json.put("chatroom_owner_id", chatroomOwner)
+
+//        if(!users.isNullOrEmpty()) {
+//            val temp_array = JSONArray()
+//            for(i in 0 until users!!.size)
+//               temp_array.put(users!!.get(i).toShortJson())
+//
+//            json.put("users", temp_array)
+//        }
+
+        return json
     }
 
 }

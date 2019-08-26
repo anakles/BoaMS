@@ -52,8 +52,12 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         println("The submitted username is: $USERNAME ($DISPLAYNAME)")
 
+
+        //Select the chatroom view as initial view:
+        onNavigationItemSelected(navView.menu.findItem(R.id.nav_chat))
+
         if(USERNAME == "admin") {
-            writeToFile(R.string.path_userprofile.toString(), User(0, "admin", "admin").toJson().toString(), false, baseContext)
+            writeToFile(R.string.path_userprofile.toString(), User(2, "admin", "admin").toJson().toString(), false, baseContext)
             return
         }
 
@@ -83,28 +87,12 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         //ToDo: Parse json chatrooms into a ArrayList of chatrooms
         val chatrooms_list = parseChatroomsFromJSON(chatrooms_json)
-
-
-        //Checking content of chatroom file
-        val file_content = readFromFile(R.string.path_chatrooms.toString(), this.baseContext)
-
-        //Select the chatroom view as initial view:
-        onNavigationItemSelected(navView.menu.findItem(R.id.nav_chat))
-
-
-
     }
 
-override fun onBackPressed() {
-
-    //Select the chatroom view as initial view:
-    val navView : NavigationView = findViewById(R.id.nav_view)
-    onNavigationItemSelected(navView.menu.findItem(R.id.nav_chat))
-    /*    if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
-            drawer_layout.closeDrawer(GravityCompat.START)
-        } else {
-            super.onBackPressed()
-        }*/
+    override fun onBackPressed() {
+        //Select the chatroom view as initial view:
+        val navView : NavigationView = findViewById(R.id.nav_view)
+        onNavigationItemSelected(navView.menu.findItem(R.id.nav_chat))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

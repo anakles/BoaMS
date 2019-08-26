@@ -16,8 +16,8 @@ import java.io.OutputStreamWriter
 
 
 class ApiController {
-    val API_URL = "http://9ntfn2zneyc83qlo.myfritz.net"
-    //val API_URL = "http://192.168.178.24"
+    //val API_URL = "http://9ntfn2zneyc83qlo.myfritz.net"
+    val API_URL = "http://192.168.178.24"
     val API_PORT = 3306
 
 
@@ -58,9 +58,10 @@ class ApiController {
     }
 
 
-    fun sendPostCommand (command : String, json_body : JSONObject) : Int {
+    fun sendPostCommand (command : String, json_body : JSONObject) : JSONObject? {
         val url = URL("${this.API_URL}:${this.API_PORT}$command")
         var apiResponseCode = 0
+        var jsonResponse : JSONObject? = null
 
         val apiRunnable = Runnable {
             with(url.openConnection() as HttpURLConnection) {
@@ -80,43 +81,81 @@ class ApiController {
                     outputStream.flush()
                 }
 
-
                 apiResponseCode = responseCode
                 println("Response Code : $apiResponseCode")
+                println("Response Message : $responseMessage")
+
+                if (apiResponseCode === HttpURLConnection.HTTP_CREATED) { //success
+                    val reader = BufferedReader(
+                        InputStreamReader(
+                            inputStream
+                        )
+                    )
+
+                    val response = StringBuffer()
+                    var inputLine = reader.readLine()
+                    while (inputLine != null) {
+                        response.append(inputLine)
+                        inputLine = reader.readLine()
+                    }
+                    reader.close()
+                    // print result
+                    println(response.toString())
+                    jsonResponse = JSONObject(response.toString())
+                }
             }
         }
 
         val apiThread = Thread(apiRunnable)
         apiThread.start()
-
-
         apiThread.join()
 
-        return apiResponseCode
+        return jsonResponse
     }
 
-    fun sendPutCommand (command : String) : JSONObject? {
+    fun sendPutCommand (command : String, json_body: JSONObject) : JSONObject? {
         val url = URL("${this.API_URL}:${this.API_PORT}$command")
-        var jsonResponse : JSONObject ?= null
+        var apiResponseCode = 0
+        var jsonResponse : JSONObject? = null
 
         val apiRunnable = Runnable {
             with(url.openConnection() as HttpURLConnection) {
+                //setRequestProperty("charset", "utf-8")
+                setRequestProperty("Content-Type", "application/json")
+
+                doOutput = true
                 requestMethod = "PUT"
 
                 println("\nSending 'PUT' request to URL : $url")
-                println("Response Code : $responseCode")
 
-                BufferedReader(InputStreamReader(inputStream)).use {
+
+                BufferedWriter(OutputStreamWriter(outputStream)).use {
+                    outputStream.write(json_body.toString().toByteArray())
+                    outputStream.flush()
+                }
+
+                apiResponseCode = responseCode
+
+                println("Response Code : $apiResponseCode")
+                println("Response Message : $responseMessage")
+
+                if (apiResponseCode === HttpURLConnection.HTTP_CREATED) { //success
+                    val reader = BufferedReader(
+                        InputStreamReader(
+                            inputStream
+                        )
+                    )
+
                     val response = StringBuffer()
-
-                    var inputLine = it.readLine()
+                    var inputLine = reader.readLine()
                     while (inputLine != null) {
                         response.append(inputLine)
-                        inputLine = it.readLine()
+                        inputLine = reader.readLine()
                     }
-                    //Parse JSON string to Object:
-                    jsonResponse = parseJson(response.toString())
-
+                    reader.close()
+                    // print result
+                    println(response.toString())
+                    jsonResponse = JSONObject(response.toString())
                 }
             }
         }

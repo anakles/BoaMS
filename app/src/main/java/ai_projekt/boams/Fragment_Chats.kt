@@ -3,6 +3,7 @@ package ai_projekt.boams
 import ai_projekt.boams.ai_project.boams.entities.*
 import ai_projekt.boams.ai_project.boams.utils.*
 import android.os.Bundle
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.ListView
 import org.json.JSONArray
 import android.widget.AdapterView.OnItemClickListener
-
+import android.widget.Toast
 
 
 class Fragment_Chats : Fragment(){
@@ -32,7 +33,6 @@ class Fragment_Chats : Fragment(){
         }
 
         listChats = view!!.findViewById<ListView>(R.id.list_chats)
-        //arrayAdapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, temp_array?.toArray())
         arrayAdapter = BoaMS_ListAdapter(context, R.layout.row_main_boa_ms, temp_array)
         listChats?.adapter = arrayAdapter
 
@@ -46,6 +46,10 @@ class Fragment_Chats : Fragment(){
                     activity!!.supportFragmentManager.beginTransaction().replace(R.id.layout_fragment, fragment_messages).commit()
 
         })
+
+        view.findViewById<FloatingActionButton>(R.id.fab_createChatroom).setOnClickListener{
+            onClick_createChatroom()
+        }
 
         return view
     }
@@ -105,4 +109,12 @@ class Fragment_Chats : Fragment(){
         return ArrayList()
     }
 
+
+    /**React to FAB - createChatroom */
+    fun onClick_createChatroom () {
+
+        val new_fragment = Fragment_ChatCreation()
+        activity!!.supportFragmentManager.beginTransaction().replace(R.id.layout_fragment, new_fragment).commit()
+
+    }
 }

@@ -606,6 +606,7 @@ color cardview_light_background
 color cardview_shadow_end_color
 color cardview_shadow_start_color
 color colorAccent
+color colorBackground
 color colorPrimary
 color colorPrimaryDark
 color colorTextRight
@@ -1015,7 +1016,11 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_action_chat
+drawable ic_action_contact
+drawable ic_action_create
 drawable ic_action_ftp
+drawable ic_action_sent
 drawable ic_launcher_background
 drawable ic_launcher_foreground
 drawable ic_menu_camera
@@ -1121,6 +1126,9 @@ id enterAlwaysCollapsed
 id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
+id fab_cancel
+id fab_create
+id fab_createChatroom
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1152,6 +1160,7 @@ id line1
 id line3
 id listMode
 id list_chats
+id list_contacts
 id list_item
 id list_messages
 id masked
@@ -1242,6 +1251,8 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
+id textView2
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1259,6 +1270,7 @@ id transition_layout_save
 id transition_position
 id transition_scene_layoutid_cache
 id transition_transform
+id txt_chatroomName
 id txt_loadingNotification
 id txt_message
 id txt_password
@@ -1340,9 +1352,10 @@ layout design_navigation_item_subheader
 layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_password_icon
+layout fragment_chatcreation
 layout fragment_chats
 layout fragment_ftp
-layout fragment_message
+layout fragment_messages
 layout mtrl_layout_snackbar
 layout mtrl_layout_snackbar_include
 layout nav_header_menu

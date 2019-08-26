@@ -32,18 +32,14 @@ fun getMessagesOfChatroom(chatroom_id : Int) : JSONArray? {
 
 
 //ToDo: Implement a method to react to the HTTP Return code: (like when the message wasn't sent)
-fun postMessage(message : Message) : Boolean {
+fun postMessage(message : Message) : JSONObject?  {
     val controller = ApiController()
 
     Log.d("BOAMS", "Trying to POST message: ${message.toJson().toString()}")
 
-    val responseCode = controller.sendPostCommand("/messages", message.toJson())
+    val responseEntity = controller.sendPostCommand("/messages", message.toJson())
 
-    println("CONTROL: Sending message: response code: $responseCode")
+    println("CONTROL: Sending message: $responseEntity")
 
-    if(responseCode > 400)
-        return false
-
-
-    return true
+    return responseEntity
 }

@@ -14,7 +14,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import android.app.Activity
 import android.view.inputmethod.InputMethodManager
@@ -35,7 +34,7 @@ class Fragment_Message : Fragment(){
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view =  inflater.inflate(R.layout.fragment_message, container, false)
+        val view =  inflater.inflate(R.layout.fragment_messages, container, false)
 
         //Initialize the list of messages:
         getMessages(corresponding_chatroom!!.chatroomId)
@@ -89,10 +88,10 @@ class Fragment_Message : Fragment(){
             message_txt.toString())
 
         //ToDo: Send message to api, then redraw the activity
-        val success = postMessage(new_message)
+        val reponseEntity = postMessage(new_message)
 
         //If the message was successfully sent, clear the textbox and lose the focus
-        if(success){
+        if(reponseEntity != null){
             Toast.makeText(context, "Nachricht gesendet", Toast.LENGTH_LONG)
             Log.d("BOAMS", "Nachricht gesendet")
             view!!.findViewById<TextView>(R.id.txt_message).text = ""
