@@ -14,6 +14,8 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.apache.commons.net.ftp.FTPSClient
 import java.lang.Exception
+import java.security.KeyStore
+import javax.net.ssl.SSLSocketFactory
 
 class MainActivity : AppCompatActivity() {
 

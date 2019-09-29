@@ -4,20 +4,19 @@ import android.content.Context
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
 import java.lang.IndexOutOfBoundsException
 import java.net.HttpURLConnection
 import java.net.URL
 import android.net.ConnectivityManager
 import android.widget.Toast
-import java.io.BufferedWriter
-import java.io.OutputStreamWriter
+import java.io.*
+import java.security.SecureRandom
+import java.security.cert.X509Certificate
+import javax.net.ssl.*
 
 
 class ApiController {
-    val API_URL = "http://9ntfn2zneyc83qlo.myfritz.net"
-    //val API_URL = "http://192.168.178.24"
+    val API_URL = "https://9ntfn2zneyc83qlo.myfritz.net"
     val API_PORT = 3306
 
 
@@ -26,8 +25,14 @@ class ApiController {
         var jsonResponse : JSONObject ?= null
 
         val apiRunnable = Runnable {
-            with(url.openConnection() as HttpURLConnection) {
-                // optional default is GET
+            with(url.openConnection() as HttpsURLConnection) {
+                //Setting the trustManagerSSLContext sc;
+                //https://stackoverflow.com/questions/16504527/how-to-do-an-https-post-from-android
+                //https://stackoverflow.com/questions/49032463/kotlin-connect-to-self-signed-https-server
+                sslSocketFactory = createSocketFactory(listOf("TLSv1.2"))
+                hostnameVerifier = HostnameVerifier { _, _ -> true }
+
+                //optional, default is GET
                 requestMethod = "GET"
 
                 println("\nSending 'GET' request to URL : $url")
@@ -64,8 +69,10 @@ class ApiController {
         var jsonResponse : JSONObject? = null
 
         val apiRunnable = Runnable {
-            with(url.openConnection() as HttpURLConnection) {
+            with(url.openConnection() as HttpsURLConnection) {
 
+                sslSocketFactory = createSocketFactory(listOf("TLSv1.2"))
+                hostnameVerifier = HostnameVerifier { _, _ -> true }
 
                 //setRequestProperty("charset", "utf-8")
                 setRequestProperty("Content-Type", "application/json")
@@ -119,9 +126,12 @@ class ApiController {
         var jsonResponse : JSONObject? = null
 
         val apiRunnable = Runnable {
-            with(url.openConnection() as HttpURLConnection) {
+            with(url.openConnection() as HttpsURLConnection) {
                 //setRequestProperty("charset", "utf-8")
                 setRequestProperty("Content-Type", "application/json")
+
+                sslSocketFactory = createSocketFactory(listOf("TLSv1.2"))
+                hostnameVerifier = HostnameVerifier { _, _ -> true }
 
                 doOutput = true
                 requestMethod = "PUT"
@@ -172,7 +182,10 @@ class ApiController {
         var jsonResponse : JSONObject ?= null
 
         val apiRunnable = Runnable {
-            with(url.openConnection() as HttpURLConnection) {
+            with(url.openConnection() as HttpsURLConnection) {
+
+                sslSocketFactory = createSocketFactory(listOf("TLSv1.2"))
+                hostnameVerifier = HostnameVerifier { _, _ -> true }
 
                 requestMethod = "DELETE"
 
@@ -251,4 +264,15 @@ class ApiController {
 
         return status
     }
+
+    private fun createSocketFactory(protocols: List<String>) =
+        SSLContext.getInstance(protocols[0]).apply {
+            val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
+                override fun getAcceptedIssuers(): Array<X509Certificate> = arrayOf()
+                override fun checkClientTrusted(certs: Array<X509Certificate>, authType: String) = Unit
+                override fun checkServerTrusted(certs: Array<X509Certificate>, authType: String) = Unit
+            })
+            init(null, trustAllCerts, SecureRandom())
+        }.socketFactory
+
 }

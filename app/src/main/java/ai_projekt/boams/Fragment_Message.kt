@@ -1,9 +1,6 @@
 package ai_projekt.boams
 
-import ai_projekt.boams.ai_project.boams.entities.Chatroom
-import ai_projekt.boams.ai_project.boams.entities.Message
-import ai_projekt.boams.ai_project.boams.entities.User
-import ai_projekt.boams.ai_project.boams.entities.getExampleMessages
+import ai_projekt.boams.ai_project.boams.entities.*
 import ai_projekt.boams.ai_project.boams.utils.getMessagesOfChatroom
 import ai_projekt.boams.ai_project.boams.utils.postMessage
 import ai_projekt.boams.ai_project.boams.utils.readFromFile
@@ -17,6 +14,7 @@ import android.widget.*
 import org.json.JSONObject
 import android.app.Activity
 import android.view.inputmethod.InputMethodManager
+import kotlinx.android.synthetic.main.fragment_chatcreation.*
 
 
 class Fragment_Message : Fragment(){
@@ -61,6 +59,8 @@ class Fragment_Message : Fragment(){
         for(i in 0 until json!!.length()){
             val json_message = json!!.get(i) as JSONObject
             messages.add(Message(json_message))
+            messages.get(i).setMessage_creation_date(json_message.getJSONArray("message_creation_date"))
+            //ToDo: set name of author to corresponding user; messages.get(i).author_alias
         }
 
         if(messages.isEmpty())

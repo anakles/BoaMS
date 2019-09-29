@@ -1384,6 +1384,7 @@ menu menu
 mipmap ic_boams
 mipmap ic_launcher
 mipmap ic_launcher_round
+raw boams_ks
 string abc_action_bar_home_description
 string abc_action_bar_up_description
 string abc_action_menu_overflow_description
@@ -1434,6 +1435,10 @@ string character_counter_pattern
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string hide_bottom_view_on_scroll_behavior
+string host_name
+string host_name_secure
+string host_port_API
+string host_port_LDAP
 string menu_gallery
 string menu_home
 string menu_send

@@ -22,4 +22,8 @@
     
     <string name="path_userprofile">userprofile.json</string>
     <string name="path_chatrooms">chatrooms.json</string>
+    <string name="host_name_secure">https://9ntfn2zneyc83qlo.myfritz.net</string>
+    <string name="host_name">9ntfn2zneyc83qlo.myfritz.net</string>
+    <string name="host_port_API">3306</string>
+    <string name="host_port_LDAP">636</string>
 </resources>
