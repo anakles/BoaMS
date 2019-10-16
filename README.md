@@ -1,7 +1,7 @@
 # BoaMS
 Code repository for the Boa MS android application of the AI project
 
-##Einleitung
+## Einleitung
 Die Digitalisierung schreitet voran. Nicht nur im privaten Umfeld, sondern auch im Unternehmen werden Smartphones, auch als Firmenhandys, immer wichtiger. 
 Oftmals wird ein Großteil der Kommunikation mit ihnen geregelt. Daher gibt es viele hilfreiche Apps und Programme auf dem Markt, die den Arbeitsalltag erleichtern können.
 Doch weiß man eigentlich, wie sicher diese Programme sind und wer die Daten sowie die geteilten Informationen noch mitliest und speichert?
@@ -17,8 +17,8 @@ Auf Basis dieser Motivation wurde die Thematik für dieses Projekt ausgewählt. 
 nachfolgenden Seiten werden wir Schritt für Schritt die nötigen Schritte dokumentieren, die
 zur Entwicklung und Inbetriebnahme einer solchen firmeneigenen App mit Kommunikation
 über das eigene Active-Directory nötig sind.
-Diese Anwendung nennen wir ***„Boa-MS“***, kurz für __B__usiness __o__riented __a__pplication –
-__m__e__s__saging.
+Diese Anwendung nennen wir ***„Boa-MS“***, kurz für **B**usiness **o**riented **a**pplication –
+**m**e**s**aging.
 
 
 ## Konzipierung
@@ -38,8 +38,8 @@ Zusätzlich wurden folgende Funktionen erdacht:
 - FTP-File Server als Dateiablage zum Firmennetzwerk, hier sollen Projektdokumentehoch- und runtergeladen werden
 - Synchronisation der Active Directory Benutzer als eine Art „Kontaktverzeichnis“
 
-Anmerkung: **Hier wurde sich bewusst für ein Active-Directory (AD) für das Identitätsmanagement entschieden.
-Die große Mehrheit aller Unternehmen nutzt den AD Dienst. So kann auf doppelte Datenhaltung verzichtet werden und die App problemlos in diese Betriebe integriert werden.**
+Anmerkung: *Hier wurde sich bewusst für ein Active-Directory (AD) für das Identitätsmanagement entschieden.
+Die große Mehrheit aller Unternehmen nutzt den AD Dienst. So kann auf doppelte Datenhaltung verzichtet werden und die App problemlos in diese Betriebe integriert werden.*
 
 Inspirationen zum User-Interface:
 - Auswahl von verschiedenen Farbschemata zur Individualisierung der App
