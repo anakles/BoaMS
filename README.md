@@ -6,23 +6,19 @@ Die Digitalisierung schreitet voran. Nicht nur im privaten Umfeld, sondern auch 
 Oftmals wird ein Großteil der Kommunikation mit ihnen geregelt. Daher gibt es viele hilfreiche Apps und Programme auf dem Markt, die den Arbeitsalltag erleichtern können.
 Doch weiß man eigentlich, wie sicher diese Programme sind und wer die Daten sowie die geteilten Informationen noch mitliest und speichert?
 Ein prominentes Beispiel für diese Apps ist die Anwendung „Teams“ von Microsoft. 
-Sie bietet eine Vielzahl an Funktionalitäten, ermöglicht durch ihre Natur als Bestandteil des Office 365 Pakets eine Integration in beinahe jede Bürosystemlandschaft und erlaubt sogar
-das Einbeziehen von Drittanbieter-Software. Aber zu welchem Preis? Natürlich kostet es
-Geld diese Software nutzen zu können, aber es kostet auch die Zustimmung, dass Microsoft
-die Daten speichern darf. Aus unternehmerischer Sicht ist das sicher nicht wünschenswert.
-Wäre es nicht viel praktischer und sicher, wenn man seine Dokumente und
-Nachrichtenverläufe auf seinem eigenen Server verwalten und speichern sowie die Software
-nach seinen eigenen Vorstellungen gestalten und weiterentwickeln könnte?
-Auf Basis dieser Motivation wurde die Thematik für dieses Projekt ausgewählt. Auf den
-nachfolgenden Seiten werden wir Schritt für Schritt die nötigen Schritte dokumentieren, die
-zur Entwicklung und Inbetriebnahme einer solchen firmeneigenen App mit Kommunikation
-über das eigene Active-Directory nötig sind.
-Diese Anwendung nennen wir ***„Boa-MS“***, kurz für **B**usiness **o**riented **a**pplication –
-**m**e**s**aging.
+Sie bietet eine Vielzahl an Funktionalitäten, ermöglicht durch ihre Natur als Bestandteil des Office 365 Pakets eine Integration in beinahe jede Bürosystemlandschaft und erlaubt sogar das Einbeziehen von Drittanbieter-Software. 
+Aber zu welchem Preis?
+Natürlich kostet es Geld diese Software nutzen zu können, aber es kostet auch die Zustimmung, dass Microsoft die Daten speichern darf. 
+Aus unternehmerischer Sicht ist das sicher nicht wünschenswert.
+Wäre es nicht viel praktischer und sicher, wenn man seine Dokumente und Nachrichtenverläufe auf seinem eigenen Server verwalten und speichern sowie die Software nach seinen eigenen Vorstellungen gestalten und weiterentwickeln könnte?
+Auf Basis dieser Motivation wurde die Thematik für dieses Projekt ausgewählt. 
+Auf den nachfolgenden Seiten werden wir Schritt für Schritt die nötigen Schritte dokumentieren, die zur Entwicklung und Inbetriebnahme einer solchen firmeneigenen App mit Kommunikation über das eigene Active-Directory nötig sind.
+Diese Anwendung nennen wir ***„Boa-MS“***, kurz für **B**usiness **o**riented **a**pplication – **m**e**s**aging.
 
 
 ## Konzipierung
-von uns angedachten Komponenten aufgelistet. Aus den grundlegenden Anforderungen einer Messaging-Anwendung ergeben sich folgende Basisfunktionen:
+Zu Beginn gilt es, definieren wir die geplanten Funktionalitäten. Anschließend werden die von uns angedachten Komponenten aufgelistet. 
+Aus den grundlegenden Anforderungen einer Messaging-Anwendung ergeben sich folgende Basisfunktionen:
 - Erstellen von Chats mit einem oder mehreren Nutzern
 - Senden und Empfangen von Nachrichten
 - Benachrichtigungen bei neu eingegangenen Nachrichten
